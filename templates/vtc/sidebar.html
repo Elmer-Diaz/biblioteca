@@ -82,10 +82,18 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
+                    <a href="{% url 'libro:librosreservados' %}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            Reserva Activas
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{#}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
-                            Reserva
+                            Reserva Vencidas
                         </p>
                     </a>
                 </li>

@@ -38,6 +38,8 @@ urlpatterns = [
       path('libro/eliminar/<int:pk>/', libroDeleteView.as_view(), name='libro_eliminar'),
       
       path('reservar-libro/', RegistrarReserva.as_view(), name='reservar_Libro'),
+    path('librosreservados', ListadoLibrosReservados.as_view(),
+         name='librosreservados'),
       
 
 

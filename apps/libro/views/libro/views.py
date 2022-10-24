@@ -156,6 +156,15 @@ class DetalleLibroDiponible(LoginRequiredMixin,DetailView):
         return redirect('libro:librosdisponiblesview')
 
 
+class ListadoLibrosReservados(LoginRequiredMixin, ListView):
+    model = Reserva
+    template_name = 'libros_reservados.html'
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(
+            estado=True, usuario=self.request.user)
+        return queryset
+
 class RegistrarReserva(LoginRequiredMixin, CreateView):
     model = Reserva
     form_class = ReservaForm
@@ -176,6 +185,3 @@ class RegistrarReserva(LoginRequiredMixin, CreateView):
 
         return HttpResponseRedirect(reverse('libro:librosdisponiblesview'))
         
-        # return HttpResponseRedirect(reverse_lazy('libro:librosdisponiblesview'))
-        # return redirect('libro:librosdisponiblesview')
-
