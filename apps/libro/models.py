@@ -150,18 +150,16 @@ class Reserva(models.Model):
     def __str__(self):
         return f'Reserva de Libro {self.libro} por {self.usuario}'
     
+def reducir_cantidad_libro(sender, instance, **kwargs):
+    libro = instance.libro
+    if libro.cantidad > 0:
+        libro.cantidad = libro.cantidad - 1
+        libro.save()
 
-# def reducir_cantidad_libro(sender, instance, **kwargs):
-#     libro = instance.libro
-#     if libro.cantidad > 0:
-#         libro.cantidad = libro.cantidad - 1
-#         libro.save()
-
-
-# def validar_creacion_reserva(sender, instance, **kwargs):
-#     libro = instance.libro
-#     if libro.cantidad < 1:
-#         raise Exception("No puede realizar esta reserva, No hay libro Disponible")
+def validar_creacion_reserva(sender, instance, **kwargs):
+    libro = instance.libro
+    if libro.cantidad < 1:
+        raise Exception("No puede realizar esta reserva, No hay libro Disponible")
 
 
 # def agregar_fecha_vencimiento_reserva(sender, instance, **kwargs):
@@ -171,9 +169,9 @@ class Reserva(models.Model):
 #         instance.save()
 
 
-# post_save.connect(reducir_cantidad_libro, sender=Reserva)
+post_save.connect(reducir_cantidad_libro, sender=Reserva)
 # post_save.connect(agregar_fecha_vencimiento_reserva, sender=Reserva)
-# pre_save.connect(validar_creacion_reserva,sender = Reserva)
+pre_save.connect(validar_creacion_reserva,sender = Reserva)
 
 
 
