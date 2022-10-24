@@ -1,0 +1,106 @@
+{% load static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="#" class="brand-link">
+        <img src="{% static 'img/logo.png' %}"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Biblioteca LCG</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <!-- request.user.imagen.url -->
+                <img src="{% static 'img/user.png' %}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{request.user.username}}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">Menu</li>
+                <li class="nav-item">
+                    <a href="{% url 'libro:dashboard' %}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Inicio
+                        </p>
+                    </a>
+                </li>
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'libro:librolistadoview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Libros
+                        </p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'libro:librosdisponiblesview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Libros Disponibles
+                        </p>
+                    </a>
+                </li>
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'libro:categorialistadoview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            Categoria
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'libro:idiomalistadoview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-language"></i>
+                        <p>
+                            Idioma
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'libro:autorlistadoview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Autor
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'libro:editoriallistadoview' %}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Editorial
+                        </p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{#}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            Reserva
+                        </p>
+                    </a>
+                </li>
+                
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'usuario:listar_usuarios' %}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</aside>

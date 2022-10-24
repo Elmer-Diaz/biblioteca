@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<div class="card">
+    <div class="card-header">
+        <div class="row" style="margin: 30px;">
+            <div class="col-md-12 text-center ">
+                <strong class="card-title">
+                    <h2>{{ object }}</h2>
+                </strong>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    {% csrf_token %}
+                    <img class="card-img-top" src="{{ object.imagen.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">Publicado el: {{ object.fechapublicacion }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text"><strong>Autores</strong></p>{{ object.obtener_autores }}
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text"><strong>Descripcion</strong></p>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text">{{ object.descripcion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary btn-lg btnRegistrar">RESERVAR ESTE
+                        LIBRO</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+
+
+<script type="text/javascript">
+     $(function () {
+            $('.btnRegistrar').on('click', function () {
+                data = {
+                    'usuario': "{{ request.user.id }}",
+                    'libro': "{{ object.id }}",
+                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
+                }
+                console.log(data)
+                $.ajax({
+                    data: data,
+                    url: '/libro/reservar-libro/',
+                    type: 'POST',
+                }).done(function (data) {
+                    alert('Reserca corracta')
+                    window.location.assign('http://127.0.0.1:8000/libro/libro/librosdisponibles');
+                });
+            });
+     })
+</script>
+
+
+
+{% endblock javascript %}
+
+
+

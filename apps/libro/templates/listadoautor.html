@@ -1,0 +1,31 @@
+{% extends 'listado.html' %}
+
+{% load static %}
+
+{% block head_List %}
+<script src="{% static 'autor/js/listado.js' %}"></script>
+{% endblock %}
+
+{% block columnas %}
+
+<tr>
+  <th scope="col">id</th>
+  <th scope="col">Nombre Completo</th>
+  <th scope="col">Nacionalidad</th>
+  <th scope="col">Sexo</th>
+  <th scope="col">Opciones</th>
+</tr>
+
+{% endblock columnas %}
+
+
+{% block filas %}
+
+
+{% endblock filas %}
+
+{% block javascript %}
+
+
+
+{% endblock javascript %}
