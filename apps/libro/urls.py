@@ -37,9 +37,15 @@ urlpatterns = [
       path('libro/editar/<int:pk>/', libroUpdateView.as_view(), name='libro_editar'),
       path('libro/eliminar/<int:pk>/', libroDeleteView.as_view(), name='libro_eliminar'),
       
+      path('reservas/', listadoreservas.as_view(), name='listadoreservas'),
+      path('reservas/crear/', ResevaCreateView.as_view(), name='reservas_crear'),
       path('reservar-libro/', RegistrarReserva.as_view(), name='reservar_Libro'),
-    path('librosreservados', ListadoLibrosReservados.as_view(),
+      path('librosreservados', ListadoLibrosReservados.as_view(),
          name='librosreservados'),
+      path('librosreservadosvencidos', ListadoLibrosReservadosVencidos.as_view(),
+         name='librosreservadosvencidos'),
+
+
       
 
 

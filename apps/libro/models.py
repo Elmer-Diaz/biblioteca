@@ -140,8 +140,7 @@ class Reserva(models.Model):
     fecha_creacion = models.DateField('Fecha de creación', auto_now=True, auto_now_add=False )
     #fecha_vencimiento = models.DateField('Fecha de vencimiento de la reserva', auto_now=False, auto_now_add=False, null=True, blank=True)
     estado = models.BooleanField(default=True, verbose_name='Estado')
-
-
+    entregada = models.BooleanField(default=False, verbose_name='entregada')
     class Meta:
 
         verbose_name = 'Reserva'

@@ -1,0 +1,46 @@
+{% extends 'listado.html' %}
+
+
+{% block columnas %}
+
+<tr>
+      <th scope="col">ID</th>
+      <th scope="col">libro</th>
+      <th scope="col">usuario</th>
+      <th scope="col">cantidad_dias</th>
+      <th scope="col">fecha_creacion</th>
+     
+</tr>
+
+{% endblock columnas %}
+
+
+{% block filas %}
+
+{% for c in object_list %}
+<tr>
+      <td>{{c.id}}</td>
+      <td>{{c.libro}}</td>
+      <td>{{c.usuario}}</td>
+      <td>{{c.cantidad_dias}}</td>
+      <td>{{c.fecha_creacion}}</td>
+    
+</tr>
+
+{% endfor %}
+
+{% endblock filas %}
+
+{% block javascript %}
+<script type="application/javascript">
+      $(document).ready(function () {
+            $('#data').DataTable({
+                  responsive: true,
+                  autoWidth: false
+            });
+
+      
+
+      });
+</script>
+{% endblock javascript %}

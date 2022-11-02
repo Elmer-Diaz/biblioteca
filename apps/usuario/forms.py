@@ -27,7 +27,8 @@ class FormularioUsuario(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('email', 'username', 'nombres', 'apellidos', 'imagen')
+        fields = ('email', 'username', 'nombres',
+                  'apellidos', 'imagen')
         widgets = {
             'email': forms.EmailInput(
                 attrs={

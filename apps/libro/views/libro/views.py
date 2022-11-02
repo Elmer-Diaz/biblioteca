@@ -51,8 +51,7 @@ class libroCreateView(SuperUsuarioMixin, CreateView):
     def post(self, request, *args, **kwargs):
         data = {}
         try:
-            #print(request.POST)
-            #print(request.FILES)
+
             action = request.POST['action']
             if action == 'add':
                 form = self.get_form()
@@ -156,6 +155,86 @@ class DetalleLibroDiponible(LoginRequiredMixin,DetailView):
         return redirect('libro:librosdisponiblesview')
 
 
+class ResevaCreateView(SuperUsuarioMixin, CreateView):
+    model = Reserva
+    form_class = ReservaForm
+    template_name = 'crear.html'
+    success_url = reverse_lazy('libro:listadoreservas')
+
+    #@method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'add':
+                form = self.get_form()
+                if form.is_valid():
+                    form.save()
+                else:
+                    data['error'] = form.errors
+            else:
+                data['error'] = 'No ha ingresado a ninguna opcion'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Crear una Reserva'
+        context['entity'] = 'Reservas'
+        context['listado_url'] = reverse_lazy('libro:listadoreservas')
+        context['action'] = 'add'
+        return context
+
+
+#para administradores
+class listadoreservas(SuperUsuarioMixin, ListView):
+    model = Reserva
+    template_name = 'listadoreservas.html'
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(entregada=False)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Listado de Reservados Activas'
+        context['crear_url'] = reverse_lazy('libro:reservas_crear')
+        context['entity'] = 'Reservas'
+        context['listado_url'] = reverse_lazy('libro:listadoreservas')
+        return context
+
+
+# class listadoreservasentregadas(SuperUsuarioMixin, ListView):
+#     model = Reserva
+#     template_name = 'listadoreservasconcretadas.html'
+
+#     @method_decorator(csrf_exempt)
+#     #@method_decorator(login_required)
+#     def dispatch(self, request, *args, **kwargs):
+#         return super().dispatch(request, *args, **kwargs)
+
+#     def get_queryset(self):
+#         queryset = self.model.objects.filter(entregada=True)
+#         return queryset
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Listado de Reservas Concretadas'
+#         #context['crear_url'] = reverse_lazy('libro:reservacrear')
+#         context['entity'] = 'Reservas'
+#         context['listado_url'] = reverse_lazy('libro:listadoreservas')
+#         return context
+
+
+
+
+
+#para usuarios
 class ListadoLibrosReservados(LoginRequiredMixin, ListView):
     model = Reserva
     template_name = 'libros_reservados.html'
@@ -164,6 +243,18 @@ class ListadoLibrosReservados(LoginRequiredMixin, ListView):
         queryset = self.model.objects.filter(
             estado=True, usuario=self.request.user)
         return queryset
+
+
+class ListadoLibrosReservadosVencidos(LoginRequiredMixin, ListView):
+    model = Reserva
+    template_name = 'libros_reservados_vencidos.html'
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(
+            estado=False, usuario=self.request.user)
+        return queryset
+
+
 
 class RegistrarReserva(LoginRequiredMixin, CreateView):
     model = Reserva
@@ -185,3 +276,4 @@ class RegistrarReserva(LoginRequiredMixin, CreateView):
 
         return HttpResponseRedirect(reverse('libro:librosdisponiblesview'))
         
+

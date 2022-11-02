@@ -22,7 +22,7 @@
                 <li class="nav-header">Menu</li>
                 <li class="nav-item">
                     <a href="{% url 'libro:dashboard' %}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon fa fa-home"></i>
                         <p>
                             Inicio
                         </p>
@@ -40,7 +40,7 @@
                 {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'libro:librosdisponiblesview' %}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon  fas fa-book-reader"></i>
                         <p>
                             Libros Disponibles
                         </p>
@@ -80,20 +80,37 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'libro:listadoreservas' %}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Listado Reservas Activas
+                        </p>
+                    </a>
+                </li>
+                {% comment %} 
+                <li class="nav-item">
+                    <a href="{% url 'libro:listadoreservasconcretadas' %}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Listado Reservas Concretadas
+                        </p>
+                    </a>
+                </li> {% endcomment %}
                 {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'libro:librosreservados' %}" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <i class="nav-icon fas fa-calendar-check"></i>
                         <p>
-                            Reserva Activas
+                             Usuario : Reserva Activas
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{#}" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
+                    <a href="{% url 'libro:librosreservadosvencidos' %}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-times"></i>
                         <p>
-                            Reserva Vencidas
+                            Usuario : Reserva Vencidas
                         </p>
                     </a>
                 </li>

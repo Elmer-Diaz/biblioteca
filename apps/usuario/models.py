@@ -34,6 +34,9 @@ class UsuarioManager(BaseUserManager):
         return usuario
 
 
+
+
+
 class Usuario(AbstractBaseUser, PermissionsMixin):
     #se pueden agregar mas atributos
     username = models.CharField(
@@ -65,3 +68,5 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.usuario_administrador
+
+
