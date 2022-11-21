@@ -97,12 +97,13 @@
                         </p>
                     </a>
                 </li> {% endcomment %}
-                {% endif %}
+                 {% else %} 
+
                 <li class="nav-item">
                     <a href="{% url 'libro:librosreservados' %}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-check"></i>
                         <p>
-                             Usuario : Reserva Activas
+                            Reserva Activas
                         </p>
                     </a>
                 </li>
@@ -110,11 +111,11 @@
                     <a href="{% url 'libro:librosreservadosvencidos' %}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-times"></i>
                         <p>
-                            Usuario : Reserva Vencidas
+                            Reserva Vencidas
                         </p>
                     </a>
                 </li>
-                
+                {% endif %}
                 {% if request.user.is_staff %}
                 <li class="nav-item">
                     <a href="{% url 'usuario:listar_usuarios' %}" class="nav-link">

@@ -14,13 +14,15 @@
     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
     <!-- Sweetalert2 -->
     <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
 </head>
-<body class="hold-transition login-page">
+<body style="background: rgb(75,225,238);
+background: radial-gradient(circle, rgba(75,225,238,1) 0%, rgba(83,69,222,1) 100%);" class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{% url 'index' %}"><b>Biblio</b>teca</a>
+        <a href="{% url 'index' %}"><b>Bienvenidos</b></a>
     </div>
  
     <div class="card">
@@ -30,7 +32,7 @@
                 <input type="hidden" name="next" value="{{ next }}">
                 {% csrf_token %}
                 <div class="input-group mb-3">
-                    {{ form.username|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su username' }}
+                    {{ form.username|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su usuario' }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -38,7 +40,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    {{ form.password|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su password' }}
+                    {{ form.password|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su contraseña' }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

@@ -1,22 +1,13 @@
 {% extends 'layout.html' %}
-
+{% load static %}
 
 {% block content %}
-<br>
-<br>
 <div class="col-sm-12 d-flex justify-content-center">
-    <h1 class="text-center">BIBLIOTECA LUIS CARLOS GALÁN SARMIENTO </h1>.
+
+    
+    <span class="text-center">
+        <img src="{% static 'img/BGF.png' %}" alt="">
+    </span>.
 </div>
-<br>
-<br>
-<div class="col-sm-12 d-flex justify-content-center">
-    <span class="text-center">Biblioteca Pública Municipal “Luís Carlos Galán Sarmiento”, creada mediante Acuerdo No. 031 de Noviembre 15 de 1995.
-    Inicialmente y por mas de 10 años funcionó y fue el componente mas importante en las instalaciones de la Casa de Cultura
-    Municipal “Josué Gustavo Bejarano” Carrera 13 Calle 12 Esquina. En el año 2007 se traslada mediante Acuerdo numero 032
-    del 26 de septiembre del 2006 a las instalaciones de la antigua Casa Campesina, ubicada en la carrera 11 No 14 – 15. A
-    partir de Marzo de 2010 inicia su funcionamiento en la nueva sede.</span>.
-</div>
-<br>
-<H3>Horarios:</H3>
-<h5>Lunes a Viernes : 8 AM - 12 M / 2 PM - 6 PM</h5>
+
 {% endblock content %}
